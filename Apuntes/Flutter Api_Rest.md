@@ -448,3 +448,45 @@ class circulos extends StatelessWidget {
 ```
 
 ![[Pasted image 20240228183307.png]]
+
+-- -
+ ## Formulario del login
+
+ ![[Pasted image 20240301152133.png]]
+![[Code_xxpyrIn4CY.gif]]
+
+![[Pasted image 20240301153203.png]]
+
+![[chrome_TgHpd5o6jg.gif]]
+
+![[Code_nBIdgsMdC7.gif]]
+
+Minimiza el teclado cuando la se presiona la pantalla
+![[qemu-system-x86_64_L8zuhVrjdr.gif]]
+
+Creacion de una nueva clase para los formularios
+![[Pasted image 20240301161103.png]]
+
+LLAMADA  A LA CLASE
+![[Pasted image 20240301161426.png]]
+
+![[chrome_wPMeYkGErW.gif]]
+
+PARA COLOCAR EL TECLADO DE TIPO EMAIL
+![[Pasted image 20240301162532.png]]
+![[chrome_fdi1D8m5UD.gif]]
+
+OCULTAR EL CAMPO DE PASSWORD
+![[Pasted image 20240301163547.png]]
+
+![[chrome_ZRn4jH6Xh6.gif]]
+
+TEXTFIELD QUE SE ACOMODE SIN AFECTAR EL DISÑO DE FONDO
+![[Code_0q66D5mmmq.gif]]
+
+Colocamos el tamaño responsivo
+![[Pasted image 20240301171632.png]]
+
+Agrega un texto al costado del *textfield* de la contraseña 
+![[Pasted image 20240301173506.png]]
+
