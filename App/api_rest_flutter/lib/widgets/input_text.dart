@@ -17,9 +17,16 @@ class InputText extends StatelessWidget {
     return TextFormField(
       keyboardType: this.keyboardType,
       obscureText: this.obscureText,
+      style: TextStyle(),
       decoration: InputDecoration(
           labelText: this.label,
-          border: this.borderEnabled ? null : InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(vertical: 5),
+          enabledBorder: this.borderEnabled
+              ? UnderlineInputBorder(
+                  borderSide: BorderSide(
+                  color: Colors.black45,
+                ))
+              : InputBorder.none,
           labelStyle: TextStyle(
             color: Colors.black45,
             fontWeight: FontWeight.w500,

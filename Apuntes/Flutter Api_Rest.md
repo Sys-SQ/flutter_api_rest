@@ -490,3 +490,247 @@ Colocamos el tamaño responsivo
 Agrega un texto al costado del *textfield* de la contraseña 
 ![[Pasted image 20240301173506.png]]
 
+Borde inferior
+![[msedge_5a5jD9g6Zj.gif]]
+ 
+ Para el espacio entre el borde 
+ ![[Pasted image 20240305144240.png]]
+Para que sean los mismos colores del border
+![[Pasted image 20240305144613.png]]
+
+### Clase *input_text.dart*
+```
+import 'package:flutter/material.dart';
+class InputText extends StatelessWidget {
+  final String label;
+  final bool obscureText, borderEnabled;
+  final TextInputType keyboardType;
+
+  const InputText(
+      {super.key,
+      this.label = '',
+      this.keyboardType = TextInputType.text,
+      this.obscureText = false,
+      this.borderEnabled = true});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      keyboardType: this.keyboardType,
+      obscureText: this.obscureText,
+      decoration: InputDecoration(
+          labelText: this.label,
+          contentPadding: EdgeInsets.symmetric(vertical: 5),
+          enabledBorder: this.borderEnabled
+              ? UnderlineInputBorder(
+                  borderSide: BorderSide(
+                  color: Colors.black45,
+                ))
+              : InputBorder.none,
+          labelStyle: TextStyle(
+            color: Colors.black45,
+            fontWeight: FontWeight.w500,
+          )),
+    );
+  }
+}
+```
+
+### Clase *login_form.dart*
+```
+import 'package:api_rest_flutter/widgets/input_text.dart';
+import 'package:flutter/material.dart';
+
+class LoginForm extends StatefulWidget {
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 30,
+      left: 20,
+      right: 20,
+      child: Column(
+        children: <Widget>[
+          InputText(
+              keyboardType: TextInputType.emailAddress, label: "EMAIL ADDRESS"),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+                color: Colors.black87,
+              )),
+            ),
+
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: InputText(
+                    label: "PASSWORD",
+                    obscureText: true,
+                    borderEnabled: false,
+                  ),
+                ),
+                TextButton(
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+### Clase Home_page.dart
+```
+import 'package:api_rest_flutter/utils/responsive.dart';
+import 'package:api_rest_flutter/widgets/circle.dart';
+import 'package:api_rest_flutter/widgets/icon_container.dart';
+import 'package:api_rest_flutter/widgets/login_form.dart';
+import 'package:flutter/material.dart';
+  
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+
+}
+
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  Widget build(BuildContext context) {
+    final Responsive responsive = Responsive.of(context);
+    // Agarraremos las dimensiones del dispositivo
+    final Size size = MediaQuery.of(context).size;
+    final double pinkSize = responsive.wp(80);
+    final double orangeSize = responsive.wp(57);
+    return Scaffold(
+      body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+
+          child: SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              height: responsive.height,
+              color: Colors.white,
+              child: Stack(
+                // PARA CENTRAR MI ICONO
+                alignment: Alignment.center,
+                children: <Widget>[
+                  circulos(
+                    arriba: -(pinkSize) * 0.55,
+                    izquierda: -(pinkSize) * 0.15,
+                    derecha: null,
+                    size: pinkSize,
+                    color: Colors.orange,
+                    colore: Colors.deepOrangeAccent,
+
+                  ),
+                  circulos(
+                    arriba: -(orangeSize) * 0.5,
+                    izquierda: null,
+                    derecha: -(orangeSize) * 0.2,
+                    size: orangeSize,
+                    color: Colors.pinkAccent,
+                    colore: Colors.pink,
+                  ),
+
+                  // PARA EL ICONO
+
+                  Positioned(
+                      top: pinkSize * 0.45,
+                      child: Column(
+                        children: [
+                          IconContainer(
+                            size: responsive.wp(17),
+                          ),
+                          // PARA LA SEPARACION DEL TEXTO
+                          SizedBox(
+                            height: responsive.wp(3),
+                          ),
+                          Text(
+                            "Hello Posgrado\nWelcome Back!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: responsive.wp(3.5)),
+                          )
+                        ],
+                      )),
+                  LoginForm()
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+}
+  
+
+class circulos extends StatelessWidget {
+  final double arriba;
+  final double? izquierda;
+  final double? derecha;
+  final double size;
+  final Color color;
+  final Color colore;
+
+
+  const circulos(
+      {super.key,
+      required this.arriba,
+      required this.izquierda,
+      required this.derecha,
+      required this.color,
+      required this.size,
+      required this.colore});
+
+  @override
+
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: arriba,
+      left: izquierda,
+      right: derecha,
+      child: Circle(size: this.size, colors: [
+        this.color,
+        this.colore,
+      ]),
+    );
+  }
+}
+```
+-- -
+## Sección del buttom y del texto
+![[Pasted image 20240305145331.png]]
+Para el button
+![[Pasted image 20240305153601.png]]
+
+Para el texto 
+![[Pasted image 20240305154530.png]]
+
+Ahora para que trabaje de forma responsiva.
+![[Pasted image 20240305154824.png]]
+
+Tamaño de la diagonal
+
+![[Pasted image 20240305155056.png]]
+
+Para el tamaño responsivo del texto
+![[Pasted image 20240305155246.png]]
+
+![[Pasted image 20240305155634.png]]
+
+min 8:16 video 10
