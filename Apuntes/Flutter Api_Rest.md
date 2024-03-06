@@ -733,4 +733,188 @@ Para el tamaño responsivo del texto
 
 ![[Pasted image 20240305155634.png]]
 
-min 8:16 video 10
+![[Code_6R9vxNzau9.gif]]
+ 
+ Espacio del margin buttom
+ ![[Pasted image 20240306090925.png]]
+ Espacio del los textFields
+ ![[Pasted image 20240306091138.png]]
+ ## Login_form.dart
+ 
+```
+import 'package:api_rest_flutter/utils/responsive.dart';
+import 'package:api_rest_flutter/widgets/input_text.dart';
+import 'package:flutter/material.dart'; 
+class LoginForm extends StatefulWidget {
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  Widget build(BuildContext context) {
+    // PARA QUE TRABAJE DE FORMA RESPONSIVA
+    final Responsive responsive = Responsive.of(context);
+    return Positioned(
+      bottom: 30,
+      left: 20,
+      right: 20,
+      child: Column(
+        children: <Widget>[
+          InputText(
+            keyboardType: TextInputType.emailAddress,
+            label: "EMAIL ADDRESS",
+            fontSize: responsive.dp(1.5),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+                color: Colors.black87,
+              )),
+            ),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: InputText(
+                    label: "PASSWORD",
+                    obscureText: true,
+                    borderEnabled: false,
+                    fontSize: responsive.dp(1.4),
+                  ),
+                ),
+
+                TextButton(
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: responsive.dp(1.5)),
+                  ),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+
+          SizedBox(height: responsive.dp(5)),
+          SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.pinkAccent,
+                padding: EdgeInsets.symmetric(vertical: 15),
+              ),
+              child: Text(
+                "Sign in",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {},
+            ),
+          ),
+          // PÀRA EL TEXTO
+          SizedBox(height: responsive.dp(4)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "New to Friendly Desi?",
+                style: TextStyle(fontSize: responsive.dp(1.5)),
+              ),
+
+              TextButton(
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(
+                    color: Colors.pinkAccent,
+                    fontSize: responsive.dp(1.5),
+                  ),
+                ),
+                onPressed: () {},
+              )
+            ],
+          ),
+          SizedBox(
+            height: responsive.dp(8),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+##  Input_text.dart
+
+```
+import 'package:flutter/material.dart';
+
+
+class InputText extends StatelessWidget {
+  final String label;
+  final bool obscureText, borderEnabled;
+  final double fontSize;
+  final TextInputType keyboardType;
+
+  const InputText({
+    super.key,
+    this.label = '',
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
+    this.borderEnabled = true,
+    this.fontSize = 15,
+  });
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      keyboardType: this.keyboardType,
+      obscureText: this.obscureText,
+      style: TextStyle(
+        fontSize: this.fontSize,
+      ),
+
+      decoration: InputDecoration(
+          labelText: this.label,
+          contentPadding: EdgeInsets.symmetric(vertical: 5),
+          enabledBorder: this.borderEnabled
+              ? UnderlineInputBorder(
+                  borderSide: BorderSide(
+                  color: Colors.black45,
+                ))
+              : InputBorder.none,
+          labelStyle: TextStyle(
+            color: Colors.black45,
+            fontWeight: FontWeight.w500,
+          )),
+    );
+  }
+}
+```
+-- -
+## Forma responsiva 
+![[Code_oMj9QCpuPK.gif]]
+
+En la clase responsiva verificaremos si es una Tablet o un dispositivo móvil.
+
+![[Pasted image 20240306114227.png]]
+
+![[Pasted image 20240306114335.png]]
+
+![[Pasted image 20240306114555.png]]
+
+![[Pasted image 20240306115105.png]]
+# Fin del Diseño
+-- -
+## Recibir el texto
+![[Pasted image 20240306120453.png]]
+
+![[Pasted image 20240306120923.png]]
+
+## Validar los campos
+![[Pasted image 20240306121642.png]]
+
+![[Code_sJAGkXXuLR.gif]]
+
+# video 12
